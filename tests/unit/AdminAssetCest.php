@@ -2,7 +2,7 @@
 
 namespace terabytesoft\assets\user\tests;
 
-use terabytesoft\assets\user\ProfileShowAsset;
+use terabytesoft\assets\user\AdminAsset;
 use terabytesoft\assets\user\tests\UnitTester;
 use yii\bootstrap4\BootstrapAsset;
 use yii\web\AssetBundle;
@@ -11,11 +11,11 @@ use yii\web\View;
 use yii\web\YiiAsset;
 
 /**
- * Class ProfileShowAssetCest
+ * Class AdminAssetCest
  *
  * Unit tests for codeception for asset user
  */
-class ProfileShowAssetCest
+class AdminAssetCest
 {
     /**
      * @var \yii\web\View;
@@ -24,8 +24,6 @@ class ProfileShowAssetCest
 
     /**
      *  _before
-     *
-     * @param UnitTester $I
      */
     public function _before(UnitTester $I): void
     {
@@ -34,8 +32,6 @@ class ProfileShowAssetCest
 
     /**
      * _after
-     *
-     * @param UnitTester $I
      */
     public function _after(UnitTester $I): void
     {
@@ -43,19 +39,17 @@ class ProfileShowAssetCest
     }
 
     /**
-     * testProfileShowAssetRegister
-     *
-     * @param UnitTester $I
+     * testAdminAssetRegister
      */
-    public function testProfileShowAssetRegister(UnitTester $I): void
+    public function testAdminAssetRegister(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        ProfileShowAsset::register($this->view);
+        AdminAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(ProfileShowAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(AdminAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
@@ -63,49 +57,43 @@ class ProfileShowAssetCest
 
         $result = $this->view->renderFile(codecept_data_dir() . 'main.php');
 
+        $I->assertRegexp('/admin.css/', $result);
         $I->assertRegexp('/bootstrap.css/', $result);
         $I->assertRegexp('/jquery.js/', $result);
-        $I->assertRegexp('/profile.css/', $result);
         $I->assertRegexp('/yii.js/', $result);
     }
 
     /**
-     * testProfileShowAssetSimpleDependency
-     *
-     * @param UnitTester $I
+     * testAdminAssetSimpleDependency
      */
-    public function testProfileShowAssetSimpleDependency(UnitTester $I): void
+    public function testAdminAssetSimpleDependency(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        ProfileShowAsset::register($this->view);
+        AdminAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(ProfileShowAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(AdminAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
 
-        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[ProfileShowAsset::class]);
+        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[AdminAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[BootstrapAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[YiiAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[JqueryAsset::class]);
     }
 
     /**
-     * testProfileShowAssetSourcesPublish
-     *
-     * @param UnitTester $I
+     * testAdminAssetSourcesPublish
      */
-    public function testProfileShowAssetSourcesPublish(UnitTester $I): void
+    public function testAdminAssetSourcesPublish(UnitTester $I): void
     {
-        $bundle = ProfileShowAsset::register($this->view);
+        $bundle = AdminAsset::register($this->view);
 
         $I->assertTrue(is_dir($bundle->basePath));
 
         $I->sourcesPublishVerifyFiles('css', $bundle);
-
-        $I->sourcesPublishVerifyFilesOnly($bundle);
     }
 }

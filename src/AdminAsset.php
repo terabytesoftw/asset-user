@@ -1,20 +1,20 @@
 <?php
 
 /**
- * SecurityLoginAsset
+ * AdminAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class SecurityLoginAsset extends AssetBundle
+class AdminAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'login.css',
+        'admin.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class SecurityLoginAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'login.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/admin';
 
     /**
      * init

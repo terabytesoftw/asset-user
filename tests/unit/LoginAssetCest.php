@@ -2,7 +2,7 @@
 
 namespace terabytesoft\assets\user\tests;
 
-use terabytesoft\assets\user\SecurityLoginAsset;
+use terabytesoft\assets\user\LoginAsset;
 use terabytesoft\assets\user\tests\UnitTester;
 use yii\bootstrap4\BootstrapAsset;
 use yii\web\AssetBundle;
@@ -11,11 +11,11 @@ use yii\web\View;
 use yii\web\YiiAsset;
 
 /**
- * Class SecurityLoginAssetCest
+ * Class LoginAssetCest
  *
  * Unit tests for codeception for asset user
  */
-class SecurityLoginAssetCest
+class LoginAssetCest
 {
     /**
      * @var \yii\web\View;
@@ -24,8 +24,6 @@ class SecurityLoginAssetCest
 
     /**
      *  _before
-     *
-     * @param UnitTester $I
      */
     public function _before(UnitTester $I): void
     {
@@ -34,8 +32,6 @@ class SecurityLoginAssetCest
 
     /**
      * _after
-     *
-     * @param UnitTester $I
      */
     public function _after(UnitTester $I): void
     {
@@ -43,19 +39,17 @@ class SecurityLoginAssetCest
     }
 
     /**
-     * testSecurityLoginAssetRegister
-     *
-     * @param UnitTester $I
+     * testLoginAssetRegister
      */
-    public function testSecurityLoginAssetRegister(UnitTester $I): void
+    public function testLoginAssetRegister(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        SecurityLoginAsset::register($this->view);
+        LoginAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(SecurityLoginAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(LoginAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
@@ -70,42 +64,36 @@ class SecurityLoginAssetCest
     }
 
     /**
-     * testSecurityLoginAssetSimpleDependency
-     *
-     * @param UnitTester $I
+     * testLoginAssetSimpleDependency
      */
-    public function testSecurityLoginAssetSimpleDependency(UnitTester $I): void
+    public function testLoginAssetSimpleDependency(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        SecurityLoginAsset::register($this->view);
+        LoginAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(SecurityLoginAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(LoginAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
 
-        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[SecurityLoginAsset::class]);
+        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[LoginAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[BootstrapAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[YiiAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[JqueryAsset::class]);
     }
 
     /**
-     * testSecurityLoginAssetSourcesPublish
-     *
-     * @param UnitTester $I
+     * testLoginAssetSourcesPublish
      */
-    public function testSecurityLoginAssetSourcesPublish(UnitTester $I): void
+    public function testLoginAssetSourcesPublish(UnitTester $I): void
     {
-        $bundle = SecurityLoginAsset::register($this->view);
+        $bundle = LoginAsset::register($this->view);
 
         $I->assertTrue(is_dir($bundle->basePath));
 
         $I->sourcesPublishVerifyFiles('css', $bundle);
-
-        $I->sourcesPublishVerifyFilesOnly($bundle);
     }
 }

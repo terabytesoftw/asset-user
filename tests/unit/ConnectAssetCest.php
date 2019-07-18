@@ -2,7 +2,7 @@
 
 namespace terabytesoft\assets\user\tests;
 
-use terabytesoft\assets\user\RecoveryRequestAsset;
+use terabytesoft\assets\user\ConnectAsset;
 use terabytesoft\assets\user\tests\UnitTester;
 use yii\bootstrap4\BootstrapAsset;
 use yii\web\AssetBundle;
@@ -11,11 +11,11 @@ use yii\web\View;
 use yii\web\YiiAsset;
 
 /**
- * Class RecoveryRequestAssetCest
+ * Class ConnectAssetCest
  *
  * Unit tests for codeception for asset user
  */
-class RecoveryRequestAssetCest
+class ConnectAssetCest
 {
     /**
      * @var \yii\web\View;
@@ -24,8 +24,6 @@ class RecoveryRequestAssetCest
 
     /**
      *  _before
-     *
-     * @param UnitTester $I
      */
     public function _before(UnitTester $I): void
     {
@@ -34,8 +32,6 @@ class RecoveryRequestAssetCest
 
     /**
      * _after
-     *
-     * @param UnitTester $I
      */
     public function _after(UnitTester $I): void
     {
@@ -43,19 +39,17 @@ class RecoveryRequestAssetCest
     }
 
     /**
-     * testRecoveryRequestAssetRegister
-     *
-     * @param UnitTester $I
+     * testConnectAssetRegister
      */
-    public function testRecoveryRequestAssetRegister(UnitTester $I): void
+    public function testConnectAssetRegister(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RecoveryRequestAsset::register($this->view);
+        ConnectAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RecoveryRequestAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ConnectAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
@@ -63,49 +57,43 @@ class RecoveryRequestAssetCest
 
         $result = $this->view->renderFile(codecept_data_dir() . 'main.php');
 
+        $I->assertRegexp('/connect.css/', $result);
         $I->assertRegexp('/bootstrap.css/', $result);
         $I->assertRegexp('/jquery.js/', $result);
-        $I->assertRegexp('/request.css/', $result);
         $I->assertRegexp('/yii.js/', $result);
     }
 
     /**
-     * testRecoveryRequestAssetSimpleDependency
-     *
-     * @param UnitTester $I
+     * testConnectAssetSimpleDependency
      */
-    public function testRecoveryRequestAssetSimpleDependency(UnitTester $I): void
+    public function testConnectAssetSimpleDependency(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RecoveryRequestAsset::register($this->view);
+        ConnectAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RecoveryRequestAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ConnectAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
 
-        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[RecoveryRequestAsset::class]);
+        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[ConnectAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[BootstrapAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[YiiAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[JqueryAsset::class]);
     }
 
     /**
-     * testRecoveryRequestAssetSourcesPublish
-     *
-     * @param UnitTester $I
+     * testConnectAssetSourcesPublish
      */
-    public function testRecoveryRequestAssetSourcesPublish(UnitTester $I): void
+    public function testConnectAssetSourcesPublish(UnitTester $I): void
     {
-        $bundle = RecoveryRequestAsset::register($this->view);
+        $bundle = ConnectAsset::register($this->view);
 
         $I->assertTrue(is_dir($bundle->basePath));
 
         $I->sourcesPublishVerifyFiles('css', $bundle);
-
-        $I->sourcesPublishVerifyFilesOnly($bundle);
     }
 }

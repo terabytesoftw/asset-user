@@ -2,7 +2,7 @@
 
 namespace terabytesoft\assets\user\tests;
 
-use terabytesoft\assets\user\RegistrationRegisterAsset;
+use terabytesoft\assets\user\ResendAsset;
 use terabytesoft\assets\user\tests\UnitTester;
 use yii\bootstrap4\BootstrapAsset;
 use yii\web\AssetBundle;
@@ -11,11 +11,11 @@ use yii\web\View;
 use yii\web\YiiAsset;
 
 /**
- * Class RegistrationRegisterAssetCest
+ * Class ResendAssetCest
  *
  * Unit tests for codeception for asset user
  */
-class RegistrationRegisterAssetCest
+class ResendAssetCest
 {
     /**
      * @var \yii\web\View;
@@ -24,8 +24,6 @@ class RegistrationRegisterAssetCest
 
     /**
      *  _before
-     *
-     * @param UnitTester $I
      */
     public function _before(UnitTester $I): void
     {
@@ -34,8 +32,6 @@ class RegistrationRegisterAssetCest
 
     /**
      * _after
-     *
-     * @param UnitTester $I
      */
     public function _after(UnitTester $I): void
     {
@@ -43,19 +39,17 @@ class RegistrationRegisterAssetCest
     }
 
     /**
-     * testRegistrationRegisterAssetRegister
-     *
-     * @param UnitTester $I
+     * testResendAssetRegister
      */
-    public function testRegistrationRegisterAssetRegister(UnitTester $I): void
+    public function testResendAssetRegister(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RegistrationRegisterAsset::register($this->view);
+        ResendAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RegistrationRegisterAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ResendAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
@@ -65,47 +59,41 @@ class RegistrationRegisterAssetCest
 
         $I->assertRegexp('/bootstrap.css/', $result);
         $I->assertRegexp('/jquery.js/', $result);
-        $I->assertRegexp('/register.css/', $result);
+        $I->assertRegexp('/resend.css/', $result);
         $I->assertRegexp('/yii.js/', $result);
     }
 
     /**
-     * testRegistrationRegisterAssetSimpleDependency
-     *
-     * @param UnitTester $I
+     * testResendAssetSimpleDependency
      */
-    public function testRegistrationRegisterAssetSimpleDependency(UnitTester $I): void
+    public function testResendAssetSimpleDependency(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RegistrationRegisterAsset::register($this->view);
+        ResendAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RegistrationRegisterAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ResendAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
 
-        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[RegistrationRegisterAsset::class]);
+        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[ResendAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[BootstrapAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[YiiAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[JqueryAsset::class]);
     }
 
     /**
-     * testRegistrationRegisterAssetSourcesPublish
-     *
-     * @param UnitTester $I
+     * testResendAssetSourcesPublish
      */
-    public function testRegistrationRegisterAssetSourcesPublish(UnitTester $I): void
+    public function testResendAssetSourcesPublish(UnitTester $I): void
     {
-        $bundle = RegistrationRegisterAsset::register($this->view);
+        $bundle = ResendAsset::register($this->view);
 
         $I->assertTrue(is_dir($bundle->basePath));
 
         $I->sourcesPublishVerifyFiles('css', $bundle);
-
-        $I->sourcesPublishVerifyFilesOnly($bundle);
     }
 }

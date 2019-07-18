@@ -1,20 +1,20 @@
 <?php
 
 /**
- * RegistrationRegisterAsset
+ * LoginAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class RegistrationRegisterAsset extends AssetBundle
+class LoginAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'register.css',
+        'login.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class RegistrationRegisterAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'register.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/login';
 
     /**
      * init

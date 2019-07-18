@@ -1,20 +1,20 @@
 <?php
 
 /**
- * AdminIndexAsset
+ * ResendAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class AdminIndexAsset extends AssetBundle
+class ResendAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'admin.css',
+        'resend.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class AdminIndexAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'admin.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/resend';
 
     /**
      * init

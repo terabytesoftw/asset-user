@@ -1,20 +1,20 @@
 <?php
 
 /**
- * RegistrationConnectAsset
+ * ResetAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class RegistrationConnectAsset extends AssetBundle
+class ResetAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'connect.css',
+        'reset.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class RegistrationConnectAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'connect.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/reset';
 
     /**
      * init

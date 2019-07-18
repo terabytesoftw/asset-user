@@ -2,7 +2,7 @@
 
 namespace terabytesoft\assets\user\tests;
 
-use terabytesoft\assets\user\RegistrationConnectAsset;
+use terabytesoft\assets\user\ResetAsset;
 use terabytesoft\assets\user\tests\UnitTester;
 use yii\bootstrap4\BootstrapAsset;
 use yii\web\AssetBundle;
@@ -11,11 +11,11 @@ use yii\web\View;
 use yii\web\YiiAsset;
 
 /**
- * Class RegistrationConnectAssetCest
+ * Class ResetAssetCest
  *
  * Unit tests for codeception for asset user
  */
-class RegistrationConnectAssetCest
+class ResetAssetCest
 {
     /**
      * @var \yii\web\View;
@@ -24,8 +24,6 @@ class RegistrationConnectAssetCest
 
     /**
      *  _before
-     *
-     * @param UnitTester $I
      */
     public function _before(UnitTester $I): void
     {
@@ -34,8 +32,6 @@ class RegistrationConnectAssetCest
 
     /**
      * _after
-     *
-     * @param UnitTester $I
      */
     public function _after(UnitTester $I): void
     {
@@ -43,19 +39,17 @@ class RegistrationConnectAssetCest
     }
 
     /**
-     * testRegistrationConnectAssetRegister
-     *
-     * @param UnitTester $I
+     * testResetAssetRegister
      */
-    public function testRegistrationConnectAssetRegister(UnitTester $I): void
+    public function testResetAssetRegister(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RegistrationConnectAsset::register($this->view);
+        ResetAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RegistrationConnectAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ResetAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
@@ -63,49 +57,43 @@ class RegistrationConnectAssetCest
 
         $result = $this->view->renderFile(codecept_data_dir() . 'main.php');
 
-        $I->assertRegexp('/connect.css/', $result);
         $I->assertRegexp('/bootstrap.css/', $result);
         $I->assertRegexp('/jquery.js/', $result);
+        $I->assertRegexp('/reset.css/', $result);
         $I->assertRegexp('/yii.js/', $result);
     }
 
     /**
-     * testRegistrationConnectAssetSimpleDependency
-     *
-     * @param UnitTester $I
+     * testResetAssetSimpleDependency
      */
-    public function testRegistrationConnectAssetSimpleDependency(UnitTester $I): void
+    public function testResetAssetSimpleDependency(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RegistrationConnectAsset::register($this->view);
+        ResetAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RegistrationConnectAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ResetAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
 
-        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[RegistrationConnectAsset::class]);
+        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[ResetAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[BootstrapAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[YiiAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[JqueryAsset::class]);
     }
 
     /**
-     * testRegistrationConnectAssetSourcesPublish
-     *
-     * @param UnitTester $I
+     * testResetAssetSourcesPublish
      */
-    public function testRegistrationConnectAssetSourcesPublish(UnitTester $I): void
+    public function testResetAssetSourcesPublish(UnitTester $I): void
     {
-        $bundle = RegistrationConnectAsset::register($this->view);
+        $bundle = ResetAsset::register($this->view);
 
         $I->assertTrue(is_dir($bundle->basePath));
 
         $I->sourcesPublishVerifyFiles('css', $bundle);
-
-        $I->sourcesPublishVerifyFilesOnly($bundle);
     }
 }

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * RecoveryRequestAsset
+ * ProfileAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class RecoveryRequestAsset extends AssetBundle
+class ProfileAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'request.css',
+        'profile.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class RecoveryRequestAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'request.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/profile';
 
     /**
      * init

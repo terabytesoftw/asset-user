@@ -1,20 +1,20 @@
 <?php
 
 /**
- * RecoveryResetAsset
+ * RegisterAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class RecoveryResetAsset extends AssetBundle
+class RegisterAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'reset.css',
+        'register.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class RecoveryResetAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'reset.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/register';
 
     /**
      * init

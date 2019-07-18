@@ -1,20 +1,20 @@
 <?php
 
 /**
- * ProfileShowAsset
+ * ConnectAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class ProfileShowAsset extends AssetBundle
+class ConnectAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'profile.css',
+        'connect.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class ProfileShowAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'profile.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/connect';
 
     /**
      * init

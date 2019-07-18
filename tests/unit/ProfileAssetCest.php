@@ -2,7 +2,7 @@
 
 namespace terabytesoft\assets\user\tests;
 
-use terabytesoft\assets\user\RecoveryResetAsset;
+use terabytesoft\assets\user\ProfileAsset;
 use terabytesoft\assets\user\tests\UnitTester;
 use yii\bootstrap4\BootstrapAsset;
 use yii\web\AssetBundle;
@@ -11,11 +11,11 @@ use yii\web\View;
 use yii\web\YiiAsset;
 
 /**
- * Class RecoveryResetAssetCest
+ * Class ProfileAssetCest
  *
  * Unit tests for codeception for asset user
  */
-class RecoveryResetAssetCest
+class ProfileAssetCest
 {
     /**
      * @var \yii\web\View;
@@ -24,8 +24,6 @@ class RecoveryResetAssetCest
 
     /**
      *  _before
-     *
-     * @param UnitTester $I
      */
     public function _before(UnitTester $I): void
     {
@@ -34,8 +32,6 @@ class RecoveryResetAssetCest
 
     /**
      * _after
-     *
-     * @param UnitTester $I
      */
     public function _after(UnitTester $I): void
     {
@@ -43,19 +39,17 @@ class RecoveryResetAssetCest
     }
 
     /**
-     * testRecoveryResetAssetRegister
-     *
-     * @param UnitTester $I
+     * testProfileAssetRegister
      */
-    public function testRecoveryResetAssetRegister(UnitTester $I): void
+    public function testProfileAssetRegister(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RecoveryResetAsset::register($this->view);
+        ProfileAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RecoveryResetAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ProfileAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
@@ -65,47 +59,41 @@ class RecoveryResetAssetCest
 
         $I->assertRegexp('/bootstrap.css/', $result);
         $I->assertRegexp('/jquery.js/', $result);
-        $I->assertRegexp('/reset.css/', $result);
+        $I->assertRegexp('/profile.css/', $result);
         $I->assertRegexp('/yii.js/', $result);
     }
 
     /**
-     * testRecoveryResetAssetSimpleDependency
-     *
-     * @param UnitTester $I
+     * testProfileAssetSimpleDependency
      */
-    public function testRecoveryResetAssetSimpleDependency(UnitTester $I): void
+    public function testProfileAssetSimpleDependency(UnitTester $I): void
     {
         $I->assertEmpty($this->view->assetBundles);
 
-        RecoveryResetAsset::register($this->view);
+        ProfileAsset::register($this->view);
 
         $I->assertCount(4, $this->view->assetBundles);
 
-        $I->assertArrayHasKey(RecoveryResetAsset::class, $this->view->assetBundles);
+        $I->assertArrayHasKey(ProfileAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(BootstrapAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(YiiAsset::class, $this->view->assetBundles);
         $I->assertArrayHasKey(JqueryAsset::class, $this->view->assetBundles);
 
-        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[RecoveryResetAsset::class]);
+        $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[ProfileAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[BootstrapAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[YiiAsset::class]);
         $I->assertInstanceOf(AssetBundle::class, $this->view->assetBundles[JqueryAsset::class]);
     }
 
     /**
-     * testRecoveryResetAssetSourcesPublish
-     *
-     * @param UnitTester $I
+     * testProfileAssetSourcesPublish
      */
-    public function testRecoveryResetAssetSourcesPublish(UnitTester $I): void
+    public function testProfileAssetSourcesPublish(UnitTester $I): void
     {
-        $bundle = RecoveryResetAsset::register($this->view);
+        $bundle = ProfileAsset::register($this->view);
 
         $I->assertTrue(is_dir($bundle->basePath));
 
         $I->sourcesPublishVerifyFiles('css', $bundle);
-
-        $I->sourcesPublishVerifyFilesOnly($bundle);
     }
 }

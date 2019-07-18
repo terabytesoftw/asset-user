@@ -31,22 +31,14 @@
 
 </br>
 
-<p align="center">
-App Web Application Basic of Yii Version 2.0. <a href="http://www.yiiframework.com/" title="Yii Framework" target="_blank">Yii Framework</a> application best for rapidly creating projects with Bootstrap 4.
-</p>
-
 ### **DIRECTORY STRUCTURE:**
 
 ```
 config/             contains application configurations
-docs/               contains documentation application basic
 src/                contains source files
 tests/              contains tests codeception for the web application
 vendor/             contains dependent 3rd-party packages
 ```
-
-### **FEATURES:**
-
 
 ### **REQUIREMENTS:**
 

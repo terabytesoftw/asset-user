@@ -1,20 +1,20 @@
 <?php
 
 /**
- * RegistrationResendAsset
+ * RequestAsset
  **/
 
 namespace terabytesoft\assets\user;
 
 use yii\web\AssetBundle;
 
-class RegistrationResendAsset extends AssetBundle
+class RequestAsset extends AssetBundle
 {
     /**
      * @var array $css
      */
     public $css = [
-        'resend.css',
+        'request.css',
     ];
 
     /**
@@ -26,18 +26,9 @@ class RegistrationResendAsset extends AssetBundle
     ];
 
     /**
-     * @var array $publishOptions
-     */
-    public $publishOptions = [
-        'only' => [
-            'resend.css',
-        ],
-    ];
-
-    /**
      * @var string $sourcePath
      */
-    public $sourcePath = __DIR__ . '/css';
+    public $sourcePath = __DIR__ . '/css/request';
 
     /**
      * init
